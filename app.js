@@ -7,6 +7,7 @@ const request = require('request');
 const app = express();
 const uuid = require('uuid');
 const userService = require('./user');
+//why fbService needed in this file.
 const fbService = require('./fb-service/fb-service');
 const skillsApplicationCreate = require('./skills-match-service');
 let sendToApiAi = require('./apiai-service/sendToApiAi');
@@ -131,7 +132,8 @@ app.post('/webhook/', function (req, res) {
 			// Iterate over each messaging event
 			pageEntry.messaging.forEach(function (messagingEvent) {
 				if (messagingEvent.optin) {
-                    fbService.receivedAuthentication(messagingEvent);
+                    
+					.receivedAuthentication(messagingEvent);
 				} else if (messagingEvent.message) {
                     receivedMessage(messagingEvent);
 				} else if (messagingEvent.delivery) {
